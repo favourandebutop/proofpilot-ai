@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProofPilot AI</title>
+</head>
+
+<body>
+  <h1>ProofPilot AI</h1>
+
+  <p>Evidence-backed research, powered by AI.</p>
+
+  <input
+    type="text"
+    id="question"
+    placeholder="Ask ProofPilot a question..."
+  >
+
+  <button id="askButton">Ask ProofPilot</button>
+
+  <div id="answer"></div>
+
+  <script>
+    document.getElementById("askButton").addEventListener("click", function () {
+      const question = document.getElementById("question").value;
+
+      if (!question) {
+        document.getElementById("answer").textContent =
+          "Please enter a question first.";
+        return;
+      }
+
+      document.getElementById("answer").textContent =
+        "ProofPilot received your question: " + question;
+    });
+  </script>
+</body>
+</html>
