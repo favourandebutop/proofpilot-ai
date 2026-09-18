@@ -3,37 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ProofPilot AI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .search-box {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 15px;
+      border: 1px solid #dbe2ea;
+      border-radius: 10px;
+      resize: vertical;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #result {
+      margin-top: 25px;
+      padding: 20px;
+      background: white;
+      border-radius: 16px;
+      display: none;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+      padding: 30px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>ProofPilot AI</h1>
 
-  <p>Evidence-backed research, powered by AI.</p>
+  <header>
+    <h1>ProofPilot AI</h1>
+    <p>Don't just get an answer. See the evidence.</p>
+  </header>
 
-  <input
-    type="text"
-    id="question"
-    placeholder="Ask ProofPilot a question..."
-  >
+  <main>
 
-  <button id="askButton">Ask ProofPilot</button>
+    <section class="hero">
+      <h2>Research with evidence.</h2>
+      <p>
+        Ask a question and ProofPilot will help organize
+        information, evidence, and sources.
+      </p>
+    </section>
 
-  <div id="answer"></div>
+    <section class="search-box">
+
+      <textarea
+        id="question"
+        placeholder="Ask ProofPilot a question..."
+      ></textarea>
+
+      <button id="askButton">
+        Ask ProofPilot
+      </button>
+
+    </section>
+
+    <div id="result"></div>
+
+  </main>
+
+  <footer>
+    ProofPilot AI • Evidence-backed research
+  </footer>
 
   <script>
-    document.getElementById("askButton").addEventListener("click", function () {
-      const question = document.getElementById("question").value;
+    const button = document.getElementById("askButton");
+    const question = document.getElementById("question");
+    const result = document.getElementById("result");
 
-      if (!question) {
-        document.getElementById("answer").textContent =
-          "Please enter a question first.";
+    button.addEventListener("click", function () {
+
+      const text = question.value.trim();
+
+      if (!text) {
+        result.style.display = "block";
+        result.textContent = "Please enter a question first.";
         return;
       }
 
-      document.getElementById("answer").textContent =
-        "ProofPilot received your question: " + question;
+      result.style.display = "block";
+
+      result.innerHTML = `
+        <strong>Question received</strong>
+        <br><br>
+        ${text}
+        <br><br>
+        <small>
+          ProofPilot is preparing the evidence engine...
+        </small>
+      `;
     });
   </script>
+
 </body>
 </html>
